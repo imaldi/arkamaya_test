@@ -12,6 +12,8 @@ class NewUserScreen extends StatefulWidget {
 class _NewUserScreenState extends State<NewUserScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container( );
+    return Center(
+      child: Text("New User"),
+    );
   }
 }

@@ -16,7 +16,7 @@ class AppRouter extends _$AppRouter {
     /// routes go here
     AutoRoute(page: HomeRoute.page, initial: true,
         children: [
-          AutoRoute(page: UserListRoute.page),
+          AutoRoute(page: UserListRoute.page, initial: true),
           AutoRoute(page: NewUserRoute.page),
           AutoRoute(page: AboutRoute.page),
         ]),

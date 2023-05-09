@@ -23,77 +23,56 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserBloc>(
-      create: (context) => UserBloc(userRepository: UserRepository())..add(GetAllUsers()),
-      child: Scaffold(
-        appBar: AppBar(title: Text("List All User")),
-        body: BlocBuilder<UserBloc,UserState>(builder: (c,s){
-          if(s is UserLoading) {
-            return CircularProgressIndicator();
-          }
-          if(s is UserSuccessGetAll) {
-            return Padding(
-              padding: EdgeInsets.all(16),
-              child:
-              ListView.builder(
-                  itemCount: s.userList.length,
-                  itemBuilder: (bc, index){
-                return UserTile(user: s.userList[index]);
-              })
-            //   Column(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Text(s.userList.toString()),
-            //     UserTile(user: s.userList.first)
-            //   ],
-            // ),
-            );
-          }
-          return Center(child: Text("No User Found"),);
-        },),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () {
-        //     context.router.push(const SingleUserRoute());
-        //   },
-        //   child: Icon(Icons.list),
-        // ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.open_in_new_rounded),
-              label: 'Open Dialog',
-            ),
+      create: (context) =>
+          UserBloc(userRepository: UserRepository())..add(GetAllUsers()),
+      child: AutoTabsRouter.pageView(
+          routes: const [
+            UserListRoute(),
+            NewUserRoute(),
+            AboutRoute(),
           ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[800],
-          onTap: (int index) {
-            switch (index) {
+          builder: (context, child, _) {
+            final tabsRouter = AutoTabsRouter.of(context);
+            var appBarTitle = "";
+            switch (tabsRouter.activeIndex) {
               case 0:
-              // only scroll to top when current index is selected.
-                if (_selectedIndex == index) {
-                  _homeController.animateTo(
-                    0.0,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeOut,
-                  );
-                }
+                appBarTitle = "User List";
                 break;
               case 1:
-                context.router.push(const SingleUserRoute());
-                // showModal(context);
+                appBarTitle = "Add User";
+                break;
+              case 2:
+                appBarTitle = "About";
+                break;
+              default:
+                "";
                 break;
             }
-            setState(
-                  () {
-                _selectedIndex = index;
-              },
+            return Scaffold(
+              appBar: AppBar(title: Text(appBarTitle)),
+              body: child,
+              bottomNavigationBar: BottomNavigationBar(
+                currentIndex: tabsRouter.activeIndex,
+                onTap: (index) {
+                  tabsRouter.setActiveIndex(index);
+                },
+                items: const <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.people),
+                    label: 'Users',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.add),
+                    label: 'New',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.info),
+                    label: 'About',
+                  ),
+                ],
+              ),
             );
-          },
-        ),
-      ),
+          }),
     );
   }
 
