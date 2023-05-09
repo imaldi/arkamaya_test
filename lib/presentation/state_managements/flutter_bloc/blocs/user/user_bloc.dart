@@ -14,9 +14,23 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc({required this.userRepository}) : super(UserInitial()) {
     on<GetAllUsers>((event, emit) async {
       emit(UserLoading());
-      Future.delayed(const Duration(seconds: 3));
+      await Future.delayed(const Duration(seconds: 3));
       var users = await userRepository.getAll();
       emit(UserSuccessGetAll(userList: users));
+    });
+
+    on<GetOneUser>((event, emit) async {
+      emit(UserLoading());
+      await Future.delayed(const Duration(seconds: 3));
+      var user = await userRepository.getOne(event.id);
+      emit(UserSuccessGetOne(user: user));
+    });
+
+    on<CreateUser>((event, emit) async {
+      emit(UserLoading());
+      await Future.delayed(const Duration(seconds: 3));
+      var isSuccess = await userRepository.createUser(name: "name", job: "job");
+      emit(const CreateUserSuccess());
     });
   }
 }
