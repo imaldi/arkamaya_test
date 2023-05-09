@@ -15,22 +15,32 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<GetAllUsers>((event, emit) async {
       emit(UserLoading());
       await Future.delayed(const Duration(seconds: 3));
-      var users = await userRepository.getAll();
-      emit(UserSuccessGetAll(userList: users));
+      var futureResult = await userRepository.getAll();
+      var newState = futureResult.fold(
+          (l) => const UserFailedGetAll("There is an Error"),
+          (r) => UserSuccessGetAll(userList: r));
+      emit(newState);
     });
 
     on<GetOneUser>((event, emit) async {
       emit(UserLoading());
       await Future.delayed(const Duration(seconds: 3));
-      var user = await userRepository.getOne(event.id);
-      emit(UserSuccessGetOne(user: user));
+      var futureResult = await userRepository.getOne(event.id);
+      var newState = futureResult.fold(
+          (l) => const UserFailedGetOne("There is an Error"),
+          (r) => UserSuccessGetOne(user: r));
+      emit(newState);
     });
 
     on<CreateUser>((event, emit) async {
       emit(UserLoading());
       await Future.delayed(const Duration(seconds: 3));
-      var isSuccess = await userRepository.createUser(name: "name", job: "job");
-      emit(const CreateUserSuccess());
+      var futureResult =
+          await userRepository.createUser(name: "name", job: "job");
+      var newState = futureResult.fold(
+          (l) => const CreateUserFailed("There is an error"),
+          (r) => const CreateUserSuccess());
+      emit(newState);
     });
   }
 }

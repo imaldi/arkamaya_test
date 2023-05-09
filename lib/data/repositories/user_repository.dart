@@ -2,12 +2,16 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:arkamaya_test/core/error/exceptions.dart';
+import 'package:dartz/dartz.dart';
+
+import '../../core/error/failures.dart';
 import '../../core/resources/consts/urls.dart';
 import '../models/user_response.dart';
 import 'package:http/http.dart' as client;
 
 class UserRepository {
-  Future<List<User>> getAll() async {
+  Future<Either<Failure, List<User>>> getAll() async {
     try {
       final url = Uri.https(baseUrl, usersUrl);
       print("URL get all user: $url");
@@ -18,16 +22,16 @@ class UserRepository {
         throw TimeoutException("Ini ada yang salah");
       });
       if (response.statusCode == HttpStatus.ok) {
-        return UserResponse.fromJson(jsonDecode(response.body)).data ?? [];
+        return Right(
+            UserResponse.fromJson(jsonDecode(response.body)).data ?? []);
       }
-      return [];
+      throw ServerException();
     } catch (e) {
-      throw Exception();
-      // throw something
+      return Left(ServerFailure());
     }
   }
 
-  Future<User> getOne(int id) async {
+  Future<Either<Failure, User>> getOne(int id) async {
     try {
       final url = Uri.https(baseUrl, "$usersUrl/$id");
       print("URL get one user: $url");
@@ -38,17 +42,16 @@ class UserRepository {
         throw TimeoutException("Ini ada yang salah");
       });
       if (response.statusCode == HttpStatus.ok) {
-        return User.fromJson(jsonDecode(response.body));
+        return Right(User.fromJson(jsonDecode(response.body)));
       }
-      // TODO handle dengan bagus nanti
-      throw Exception;
+      throw ServerException();
     } catch (e) {
-      throw Exception();
-      // throw something
+      return Left(ServerFailure());
     }
   }
 
-  Future<bool> createUser({required String name, required String job}) async {
+  Future<Either<Failure, bool>> createUser(
+      {required String name, required String job}) async {
     try {
       final url = Uri.https(baseUrl, usersUrl);
       print("URL login remote data source: $url");
@@ -61,13 +64,12 @@ class UserRepository {
         throw TimeoutException("There is a failure");
       });
       if (response.statusCode == HttpStatus.ok) {
-        return true;
+        return const Right(true);
         // UserResponse.fromJson(jsonDecode(response.body)).data ?? [];
       }
-      return false;
+      throw ServerException();
     } catch (e) {
-      throw Exception();
-      // throw something
+      return Left(ServerFailure());
     }
   }
 }
