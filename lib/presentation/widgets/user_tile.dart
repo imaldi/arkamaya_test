@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/route/app_router.dart';
 import '../../data/models/user_response.dart';
 
 class UserTile extends StatefulWidget {
@@ -14,6 +16,9 @@ class _UserTileState extends State<UserTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {
+        context.router.push(SingleUserRoute(id: widget.user.id ?? 0));
+      },
       leading: Image.network(
         widget.user.avatar ?? "",
         errorBuilder: (bc, obj, st) {

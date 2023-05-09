@@ -282,6 +282,192 @@ abstract class _UserResponse implements UserResponse {
       throw _privateConstructorUsedError;
 }
 
+SingleUserResponse _$SingleUserResponseFromJson(Map<String, dynamic> json) {
+  return _SingleUserResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SingleUserResponse {
+  User? get data => throw _privateConstructorUsedError;
+  Support? get support => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SingleUserResponseCopyWith<SingleUserResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SingleUserResponseCopyWith<$Res> {
+  factory $SingleUserResponseCopyWith(
+          SingleUserResponse value, $Res Function(SingleUserResponse) then) =
+      _$SingleUserResponseCopyWithImpl<$Res, SingleUserResponse>;
+  @useResult
+  $Res call({User? data, Support? support});
+
+  $UserCopyWith<$Res>? get data;
+  $SupportCopyWith<$Res>? get support;
+}
+
+/// @nodoc
+class _$SingleUserResponseCopyWithImpl<$Res, $Val extends SingleUserResponse>
+    implements $SingleUserResponseCopyWith<$Res> {
+  _$SingleUserResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? support = freezed,
+  }) {
+    return _then(_value.copyWith(
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as User?,
+      support: freezed == support
+          ? _value.support
+          : support // ignore: cast_nullable_to_non_nullable
+              as Support?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SupportCopyWith<$Res>? get support {
+    if (_value.support == null) {
+      return null;
+    }
+
+    return $SupportCopyWith<$Res>(_value.support!, (value) {
+      return _then(_value.copyWith(support: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_SingleUserResponseCopyWith<$Res>
+    implements $SingleUserResponseCopyWith<$Res> {
+  factory _$$_SingleUserResponseCopyWith(_$_SingleUserResponse value,
+          $Res Function(_$_SingleUserResponse) then) =
+      __$$_SingleUserResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({User? data, Support? support});
+
+  @override
+  $UserCopyWith<$Res>? get data;
+  @override
+  $SupportCopyWith<$Res>? get support;
+}
+
+/// @nodoc
+class __$$_SingleUserResponseCopyWithImpl<$Res>
+    extends _$SingleUserResponseCopyWithImpl<$Res, _$_SingleUserResponse>
+    implements _$$_SingleUserResponseCopyWith<$Res> {
+  __$$_SingleUserResponseCopyWithImpl(
+      _$_SingleUserResponse _value, $Res Function(_$_SingleUserResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? support = freezed,
+  }) {
+    return _then(_$_SingleUserResponse(
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as User?,
+      support: freezed == support
+          ? _value.support
+          : support // ignore: cast_nullable_to_non_nullable
+              as Support?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_SingleUserResponse implements _SingleUserResponse {
+  const _$_SingleUserResponse({this.data, this.support});
+
+  factory _$_SingleUserResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_SingleUserResponseFromJson(json);
+
+  @override
+  final User? data;
+  @override
+  final Support? support;
+
+  @override
+  String toString() {
+    return 'SingleUserResponse(data: $data, support: $support)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SingleUserResponse &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.support, support) || other.support == support));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, data, support);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SingleUserResponseCopyWith<_$_SingleUserResponse> get copyWith =>
+      __$$_SingleUserResponseCopyWithImpl<_$_SingleUserResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SingleUserResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SingleUserResponse implements SingleUserResponse {
+  const factory _SingleUserResponse(
+      {final User? data, final Support? support}) = _$_SingleUserResponse;
+
+  factory _SingleUserResponse.fromJson(Map<String, dynamic> json) =
+      _$_SingleUserResponse.fromJson;
+
+  @override
+  User? get data;
+  @override
+  Support? get support;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SingleUserResponseCopyWith<_$_SingleUserResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 User _$UserFromJson(Map<String, dynamic> json) {
   return _User.fromJson(json);
 }

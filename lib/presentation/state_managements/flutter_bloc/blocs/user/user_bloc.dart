@@ -28,7 +28,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       var futureResult = await userRepository.getOne(event.id);
       var newState = futureResult.fold(
           (l) => const UserFailedGetOne("There is an Error"),
-          (r) => UserSuccessGetOne(user: r));
+          (r) => UserSuccessGetOne(userResponse: r));
       emit(newState);
     });
 

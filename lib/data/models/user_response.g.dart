@@ -30,6 +30,24 @@ Map<String, dynamic> _$$_UserResponseToJson(_$_UserResponse instance) =>
       'support': instance.support,
     };
 
+_$_SingleUserResponse _$$_SingleUserResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_SingleUserResponse(
+      data: json['data'] == null
+          ? null
+          : User.fromJson(json['data'] as Map<String, dynamic>),
+      support: json['support'] == null
+          ? null
+          : Support.fromJson(json['support'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_SingleUserResponseToJson(
+        _$_SingleUserResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'support': instance.support,
+    };
+
 _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       id: json['id'] as int?,
       email: json['email'] as String?,

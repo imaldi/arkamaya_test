@@ -28,15 +28,7 @@ class _UserListScreenState extends State<UserListScreen> {
                   itemCount: s.userList.length,
                   itemBuilder: (bc, index) {
                     return UserTile(user: s.userList[index]);
-                  })
-              //   Column(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Text(s.userList.toString()),
-              //     UserTile(user: s.userList.first)
-              //   ],
-              // ),
-              );
+                  }));
         }
         return Center(
           child: Text("No User Found"),

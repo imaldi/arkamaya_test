@@ -31,7 +31,7 @@ class UserRepository {
     }
   }
 
-  Future<Either<Failure, User>> getOne(int id) async {
+  Future<Either<Failure, SingleUserResponse>> getOne(int id) async {
     try {
       final url = Uri.https(baseUrl, "$usersUrl/$id");
       print("URL get one user: $url");
@@ -42,7 +42,7 @@ class UserRepository {
         throw TimeoutException("Ini ada yang salah");
       });
       if (response.statusCode == HttpStatus.ok) {
-        return Right(User.fromJson(jsonDecode(response.body)));
+        return Right(SingleUserResponse.fromJson(jsonDecode(response.body)));
       }
       throw ServerException();
     } catch (e) {

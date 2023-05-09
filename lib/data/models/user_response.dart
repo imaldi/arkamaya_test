@@ -18,7 +18,19 @@ class UserResponse with _$UserResponse {
     Support? support,
   }) = _UserResponse;
 
-  factory UserResponse.fromJson(Map<String, dynamic> json) => _$UserResponseFromJson(json);
+  factory UserResponse.fromJson(Map<String, dynamic> json) =>
+      _$UserResponseFromJson(json);
+}
+
+@freezed
+class SingleUserResponse with _$SingleUserResponse {
+  const factory SingleUserResponse({
+    User? data,
+    Support? support,
+  }) = _SingleUserResponse;
+
+  factory SingleUserResponse.fromJson(Map<String, dynamic> json) =>
+      _$SingleUserResponseFromJson(json);
 }
 
 @freezed
@@ -41,5 +53,6 @@ class Support with _$Support {
     String? text,
   }) = _Support;
 
-  factory Support.fromJson(Map<String, dynamic> json) => _$SupportFromJson(json);
+  factory Support.fromJson(Map<String, dynamic> json) =>
+      _$SupportFromJson(json);
 }

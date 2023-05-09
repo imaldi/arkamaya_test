@@ -29,10 +29,10 @@ class UserFailedGetAll extends UserState {
 }
 
 class UserSuccessGetOne extends UserState {
-  final User user;
-  const UserSuccessGetOne({required this.user});
+  final SingleUserResponse userResponse;
+  const UserSuccessGetOne({required this.userResponse});
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [userResponse];
 }
 
 class UserFailedGetOne extends UserState {
