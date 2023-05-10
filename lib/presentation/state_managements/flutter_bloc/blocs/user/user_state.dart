@@ -14,6 +14,11 @@ class UserLoading extends UserState {
   List<Object> get props => [];
 }
 
+class CreateUserLoading extends UserState {
+  @override
+  List<Object> get props => [];
+}
+
 class UserSuccessGetAll extends UserState {
   final List<User> userList;
   const UserSuccessGetAll({required this.userList});

@@ -75,36 +75,41 @@ class _NewUserScreenState extends State<NewUserScreen> {
                     //   content: Text('Yay! A SnackBar!'),
                     // );
                     if (state is CreateUserSuccess) {
+                      setState(() {
+                        nameController.text = " ";
+                        jobController.text = " ";
+                      });
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(
                             "Data Has Been Created:\nID : ${state.createUserResponse.id}\nCreated At : ${state.createUserResponse.createdAt}"),
                       ));
-                      // myToast(
-                      //     "Data Has Been Created:\nID : ${state.createUserResponse.id}\nCreated At : ${state.createUserResponse.createdAt}");
+                      context.read<UserBloc>().add(GetAllUsers());
+                      FocusScope.of(context).requestFocus(FocusNode());
                     }
                     if ((state is CreateUserFailed)) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text("Create User Failed"),
                       ));
-                      // myToast("Data is failed to create");
+                      FocusScope.of(context).requestFocus(FocusNode());
                     }
                   },
                   builder: (context, state) {
                     return ElevatedButton(
-                        onPressed: nameController.text.isEmpty ||
-                                jobController.text.isEmpty
+                        onPressed: (nameController.text.isEmpty ||
+                                    jobController.text.isEmpty) ||
+                                state is CreateUserLoading
                             ? null
                             : () {
                                 if (nameController.text.isNotEmpty &&
                                     jobController.text.isNotEmpty) {
                                   context.read<UserBloc>().add(CreateUser(
-                                      nama: nameController.text,
-                                      job: jobController.text));
+                                      nama: nameController.text.trim(),
+                                      job: jobController.text.trim()));
                                 }
                               },
                         child: Container(
                             padding: EdgeInsets.all(sizeMedium),
-                            child: state is UserLoading
+                            child: state is CreateUserLoading
                                 ? const CircularProgressIndicator(
                                     color: Colors.white,
                                   )

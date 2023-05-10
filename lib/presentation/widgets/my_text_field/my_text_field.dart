@@ -18,6 +18,7 @@ class MyTextField extends StatefulWidget {
   final Widget? prefixIcon;
   final TextInputAction? textInputAction;
   final String? Function(String?)? validator;
+  final AutovalidateMode? autovalidateMode;
 
   const MyTextField(
       {this.enabled,
@@ -35,6 +36,7 @@ class MyTextField extends StatefulWidget {
       this.suffixIcon,
       this.prefixIcon,
       this.textInputAction,
+      this.autovalidateMode,
       Key? key})
       : super(key: key);
 
@@ -66,7 +68,8 @@ class _MyTextFieldState extends State<MyTextField> {
             }
           },
           onChanged: widget.onChanged,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autovalidateMode:
+              widget.autovalidateMode ?? AutovalidateMode.onUserInteraction,
           onEditingComplete: widget.onEditingComplete,
           keyboardType: widget.keyboardType,
           decoration: InputDecoration(

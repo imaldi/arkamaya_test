@@ -14,7 +14,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc({required this.userRepository}) : super(UserInitial()) {
     on<GetAllUsers>((event, emit) async {
       emit(UserLoading());
-      await Future.delayed(const Duration(seconds: 3));
       var futureResult = await userRepository.getAll();
       var newState = futureResult.fold(
           (l) => const UserFailedGetAll("There is an Error"),
@@ -24,7 +23,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
     on<GetOneUser>((event, emit) async {
       emit(UserLoading());
-      await Future.delayed(const Duration(seconds: 3));
       var futureResult = await userRepository.getOne(event.id);
       var newState = futureResult.fold(
           (l) => const UserFailedGetOne("There is an Error"),
@@ -33,8 +31,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     });
 
     on<CreateUser>((event, emit) async {
-      emit(UserLoading());
-      await Future.delayed(const Duration(seconds: 3));
+      emit(CreateUserLoading());
       var futureResult =
           await userRepository.createUser(name: "name", job: "job");
       var newState = futureResult.fold(
