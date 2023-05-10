@@ -468,6 +468,196 @@ abstract class _SingleUserResponse implements SingleUserResponse {
       throw _privateConstructorUsedError;
 }
 
+CreateUserResponse _$CreateUserResponseFromJson(Map<String, dynamic> json) {
+  return _CreateUserResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CreateUserResponse {
+  String? get name => throw _privateConstructorUsedError;
+  String? get job => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CreateUserResponseCopyWith<CreateUserResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateUserResponseCopyWith<$Res> {
+  factory $CreateUserResponseCopyWith(
+          CreateUserResponse value, $Res Function(CreateUserResponse) then) =
+      _$CreateUserResponseCopyWithImpl<$Res, CreateUserResponse>;
+  @useResult
+  $Res call({String? name, String? job, String? id, DateTime? createdAt});
+}
+
+/// @nodoc
+class _$CreateUserResponseCopyWithImpl<$Res, $Val extends CreateUserResponse>
+    implements $CreateUserResponseCopyWith<$Res> {
+  _$CreateUserResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? job = freezed,
+    Object? id = freezed,
+    Object? createdAt = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      job: freezed == job
+          ? _value.job
+          : job // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CreateUserResponseCopyWith<$Res>
+    implements $CreateUserResponseCopyWith<$Res> {
+  factory _$$_CreateUserResponseCopyWith(_$_CreateUserResponse value,
+          $Res Function(_$_CreateUserResponse) then) =
+      __$$_CreateUserResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? name, String? job, String? id, DateTime? createdAt});
+}
+
+/// @nodoc
+class __$$_CreateUserResponseCopyWithImpl<$Res>
+    extends _$CreateUserResponseCopyWithImpl<$Res, _$_CreateUserResponse>
+    implements _$$_CreateUserResponseCopyWith<$Res> {
+  __$$_CreateUserResponseCopyWithImpl(
+      _$_CreateUserResponse _value, $Res Function(_$_CreateUserResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? job = freezed,
+    Object? id = freezed,
+    Object? createdAt = freezed,
+  }) {
+    return _then(_$_CreateUserResponse(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      job: freezed == job
+          ? _value.job
+          : job // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CreateUserResponse implements _CreateUserResponse {
+  const _$_CreateUserResponse({this.name, this.job, this.id, this.createdAt});
+
+  factory _$_CreateUserResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_CreateUserResponseFromJson(json);
+
+  @override
+  final String? name;
+  @override
+  final String? job;
+  @override
+  final String? id;
+  @override
+  final DateTime? createdAt;
+
+  @override
+  String toString() {
+    return 'CreateUserResponse(name: $name, job: $job, id: $id, createdAt: $createdAt)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CreateUserResponse &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.job, job) || other.job == job) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, job, id, createdAt);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CreateUserResponseCopyWith<_$_CreateUserResponse> get copyWith =>
+      __$$_CreateUserResponseCopyWithImpl<_$_CreateUserResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CreateUserResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CreateUserResponse implements CreateUserResponse {
+  const factory _CreateUserResponse(
+      {final String? name,
+      final String? job,
+      final String? id,
+      final DateTime? createdAt}) = _$_CreateUserResponse;
+
+  factory _CreateUserResponse.fromJson(Map<String, dynamic> json) =
+      _$_CreateUserResponse.fromJson;
+
+  @override
+  String? get name;
+  @override
+  String? get job;
+  @override
+  String? get id;
+  @override
+  DateTime? get createdAt;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CreateUserResponseCopyWith<_$_CreateUserResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 User _$UserFromJson(Map<String, dynamic> json) {
   return _User.fromJson(json);
 }

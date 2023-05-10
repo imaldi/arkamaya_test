@@ -34,6 +34,19 @@ class SingleUserResponse with _$SingleUserResponse {
 }
 
 @freezed
+class CreateUserResponse with _$CreateUserResponse {
+  const factory CreateUserResponse({
+    String? name,
+    String? job,
+    String? id,
+    DateTime? createdAt,
+  }) = _CreateUserResponse;
+
+  factory CreateUserResponse.fromJson(Map<String, dynamic> json) =>
+      _$CreateUserResponseFromJson(json);
+}
+
+@freezed
 class User with _$User {
   const factory User({
     int? id,

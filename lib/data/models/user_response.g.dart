@@ -48,6 +48,26 @@ Map<String, dynamic> _$$_SingleUserResponseToJson(
       'support': instance.support,
     };
 
+_$_CreateUserResponse _$$_CreateUserResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_CreateUserResponse(
+      name: json['name'] as String?,
+      job: json['job'] as String?,
+      id: json['id'] as String?,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+    );
+
+Map<String, dynamic> _$$_CreateUserResponseToJson(
+        _$_CreateUserResponse instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'job': instance.job,
+      'id': instance.id,
+      'createdAt': instance.createdAt?.toIso8601String(),
+    };
+
 _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       id: json['id'] as int?,
       email: json['email'] as String?,

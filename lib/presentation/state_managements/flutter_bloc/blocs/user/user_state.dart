@@ -43,9 +43,10 @@ class UserFailedGetOne extends UserState {
 }
 
 class CreateUserSuccess extends UserState {
-  const CreateUserSuccess();
+  final CreateUserResponse createUserResponse;
+  const CreateUserSuccess(this.createUserResponse);
   @override
-  List<Object> get props => [];
+  List<Object> get props => [createUserResponse];
 }
 
 class CreateUserFailed extends UserState {

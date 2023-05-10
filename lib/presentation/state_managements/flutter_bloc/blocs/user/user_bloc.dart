@@ -39,7 +39,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           await userRepository.createUser(name: "name", job: "job");
       var newState = futureResult.fold(
           (l) => const CreateUserFailed("There is an error"),
-          (r) => const CreateUserSuccess());
+          (r) => CreateUserSuccess(r));
       emit(newState);
     });
   }

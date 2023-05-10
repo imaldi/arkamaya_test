@@ -50,11 +50,11 @@ class UserRepository {
     }
   }
 
-  Future<Either<Failure, bool>> createUser(
+  Future<Either<Failure, CreateUserResponse>> createUser(
       {required String name, required String job}) async {
     try {
       final url = Uri.https(baseUrl, usersUrl);
-      print("URL login remote data source: $url");
+      print("URL create user: $url");
       final response = await client.post(url, headers: {
         'Accept': 'application/json'
       }, body: {
@@ -63,9 +63,10 @@ class UserRepository {
       }).timeout(const Duration(seconds: 5), onTimeout: () {
         throw TimeoutException("There is a failure");
       });
-      if (response.statusCode == HttpStatus.ok) {
-        return const Right(true);
-        // UserResponse.fromJson(jsonDecode(response.body)).data ?? [];
+      if (response.statusCode == HttpStatus.created) {
+        print("status code: ${response.statusCode}");
+        print("status created: ${response.body}");
+        return Right(CreateUserResponse.fromJson(jsonDecode(response.body)));
       }
       throw ServerException();
     } catch (e) {
