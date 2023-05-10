@@ -1,3 +1,4 @@
+import 'package:arkamaya_test/core/resources/consts/sizes.dart';
 import 'package:arkamaya_test/presentation/state_managements/flutter_bloc/blocs/user/user_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -25,30 +26,39 @@ class _SingleUserScreenState extends State<SingleUserScreen> {
         ..add(GetOneUser(widget.id)),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("User Detail"),
+          title: const Text("User Detail"),
         ),
-        body: BlocBuilder<UserBloc, UserState>(builder: (bc, s) {
-          if (s is UserLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (s is UserSuccessGetOne) {
-            return Padding(
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    UserTile(
-                      user: s.userResponse.data ?? const User(),
-                    ),
-                    const Divider(),
-                    const Text("Support"),
-                    Text("${s.userResponse.support}"),
-                  ],
-                ));
-          }
-          return Center(
-            child: Text("User Not Found"),
-          );
-        }),
+        body: SingleChildScrollView(
+          child: BlocBuilder<UserBloc, UserState>(builder: (bc, s) {
+            if (s is UserLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (s is UserSuccessGetOne) {
+              return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      UserTile(
+                        user: s.userResponse.data ?? const User(),
+                      ),
+                      const Divider(),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Support",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: sizeBig),
+                        ),
+                      ),
+                      Text("${s.userResponse.support?.text}"),
+                    ],
+                  ));
+            }
+            return const Center(
+              child: Text("User Not Found"),
+            );
+          }),
+        ),
       ),
     );
   }

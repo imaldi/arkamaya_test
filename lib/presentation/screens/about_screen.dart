@@ -17,56 +17,58 @@ class AboutScreen extends StatefulWidget {
 class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "About",
-              style: TextStyle(
-                  color: primaryColor,
-                  fontSize: sizeBig,
-                  fontWeight: FontWeight.bold),
+    return SingleChildScrollView(
+      child: Center(
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "About",
+                style: TextStyle(
+                    color: primaryColor,
+                    fontSize: sizeBig,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-          CircleAvatar(
-            radius: 75,
-            backgroundImage: AssetImage(
-              "assets/img/me.jpg",
+            const CircleAvatar(
+              radius: 75,
+              backgroundImage: AssetImage(
+                "assets/img/me.jpg",
+              ),
             ),
-          ),
-          Card(
-            color: primaryColor,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Material(
-                  type: MaterialType.transparency,
-                  textStyle: TextStyle(color: Colors.white),
-                  child: Table(
-                    children: [
-                      TableRow(
-                          children: [Text("Nama"), Text(": Aldi Irsan Majid")]),
-                      TableRow(
-                        children: [
-                          Text("Tempat Tanggal Lahir"),
-                          Text(": Jakarta, 2 Oktober 1998"),
-                        ],
-                      ),
-                      TableRow(
-                        children: [
-                          Text("Nomor Telepon"),
-                          Text(": 082235539449"),
-                        ],
-                      ),
-                    ],
-                  )),
+            Card(
+              color: primaryColor,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Material(
+                    type: MaterialType.transparency,
+                    textStyle: const TextStyle(color: Colors.white),
+                    child: Table(
+                      children: const [
+                        TableRow(children: [
+                          Text("Nama"),
+                          Text(": Aldi Irsan Majid")
+                        ]),
+                        TableRow(
+                          children: [
+                            Text("Tempat Tanggal Lahir"),
+                            Text(": Jakarta, 2 Oktober 1998"),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            Text("Nomor Telepon"),
+                            Text(": 082235539449"),
+                          ],
+                        ),
+                      ],
+                    )),
+              ),
             ),
-          ),
-          Container(
-            child: Column(
+            Column(
               children: [
-                Text("How much do you like my app?"),
+                const Text("How much do you like my app?"),
                 RatingStars(
                   editable: true,
                   rating: 5,
@@ -77,11 +79,11 @@ class _AboutScreenState extends State<AboutScreen> {
                     onPressed: () {
                       myToast("Thanks!");
                     },
-                    child: Text("Save"))
+                    child: const Text("Save"))
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,5 @@
 import 'package:arkamaya_test/core/route/app_router.dart';
-import 'package:arkamaya_test/data/models/user_response.dart';
 import 'package:arkamaya_test/data/repositories/user_repository.dart';
-import 'package:arkamaya_test/presentation/widgets/user_tile.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
