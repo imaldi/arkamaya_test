@@ -19,7 +19,7 @@ class _UserListScreenState extends State<UserListScreen> {
     return BlocBuilder<UserBloc, UserState>(
       builder: (c, s) {
         if (s is UserLoading) {
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         }
         if (s is UserSuccessGetAll) {
           return Padding(
