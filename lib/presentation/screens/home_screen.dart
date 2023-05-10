@@ -15,9 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
-  final ScrollController _homeController = ScrollController();
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserBloc>(
@@ -71,23 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             );
           }),
-    );
-  }
-
-  void showModal(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        content: const Text('Example Dialog'),
-        actions: <TextButton>[
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('Close'),
-          )
-        ],
-      ),
     );
   }
 }
