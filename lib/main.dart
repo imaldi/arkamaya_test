@@ -1,3 +1,4 @@
+import 'package:arkamaya_test/core/resources/consts/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'core/route/app_router.dart';
@@ -7,7 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   // This widget is the root of your application.
   final _appRouter = AppRouter();
   @override
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: primaryColor,
       ),
     );
   }
